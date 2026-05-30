@@ -1,11 +1,26 @@
 import CatalogProvider from "./Context/CatalogProvider";
-import TestComponent from "./Components/TestComponent/TestComponent";
+import Root from "./Root";
+import {
+  Route,
+  Router,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      path='/'
+      element={<Root />}
+    />,
+  ),
+);
 
 function App() {
   return (
     <CatalogProvider>
-      <p>the new catalog is about to be here</p>
-      <TestComponent />
+      <RouterProvider router={router} />
     </CatalogProvider>
   );
 }

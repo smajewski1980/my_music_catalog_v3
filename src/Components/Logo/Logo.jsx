@@ -7,7 +7,7 @@ const Logo = () => {
       <Link to='/'>
         <img
           src='/tmc_logo.png'
-          alt=''
+          alt='The Majewski Collection'
         />
       </Link>
     </div>

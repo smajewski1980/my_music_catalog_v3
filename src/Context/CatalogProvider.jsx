@@ -24,13 +24,13 @@ function CatalogProvider({ children }) {
         cdSingles,
         cdSinglesTracks,
       ] = await Promise.all([
-        import("../data/recordsJSON.json"),
-        import("../data/tapesJSON.json"),
-        import("../data/mainCatalogJSON.json"),
-        import("../data/CD_CompsJSON.json"),
-        import("../data/CD_CompsTracksJSON.json"),
-        import("../data/CD_SinglesJSON.json"),
-        import("../data/CD_SinglesTracksJSON.json"),
+        import("../data/RECORDS.json"),
+        import("../data/TAPES.json"),
+        import("../data/CDS.json"),
+        import("../data/CD_COMPS.json"),
+        import("../data/CD_COMPS_TRACKS.json"),
+        import("../data/CD_SINGLES.json"),
+        import("../data/CD_SINGLES_TRACKS.json"),
       ]);
       setCatalog({
         records,

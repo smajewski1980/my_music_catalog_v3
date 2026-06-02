@@ -7,16 +7,16 @@ describe("Header", () => {
   it("renders the navigation buttons", () => {
     render(<Header />);
 
+    const logoImg = screen.getByAltText(/the majewski collection/i);
     const btnSearchAll = screen.getByText(/search all/i);
     const btnCds = screen.getByText(/cds/i);
     const btnRecords = screen.getByText(/records/i);
     const btnTapes = screen.getByText(/tapes/i);
-    const logoImg = screen.getByAltText(/the majewski collection/i);
 
+    expect(logoImg).toBeInTheDocument();
     expect(btnSearchAll).toBeInTheDocument();
     expect(btnCds).toBeInTheDocument();
     expect(btnRecords).toBeInTheDocument();
     expect(btnTapes).toBeInTheDocument();
-    expect(logoImg).toBeInTheDocument();
   });
 });

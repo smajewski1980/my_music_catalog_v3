@@ -1,15 +1,15 @@
 import styles from "./Logo.module.css";
-import { Link } from "react-router-dom";
 
-const Logo = () => {
+const Logo = ({ setFormat }) => {
   return (
-    <div className={styles.logoWrapper}>
-      <Link to='/'>
-        <img
-          src='/tmc_logo.png'
-          alt='The Majewski Collection'
-        />
-      </Link>
+    <div
+      className={styles.logoWrapper}
+      onClick={() => setFormat(null)}
+    >
+      <img
+        src='/tmc_logo.png'
+        alt='The Majewski Collection'
+      />
     </div>
   );
 };

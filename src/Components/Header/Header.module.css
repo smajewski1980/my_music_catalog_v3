@@ -4,18 +4,4 @@
   align-items: center;
   justify-content: space-around;
   padding: 2rem 5rem;
-
-  .headerNavList {
-    list-style-type: none;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    max-width: 800px;
-    margin-inline-start: auto;
-
-    button {
-      width: 100%;
-      max-width: 10rem;
-    }
-  }
 }

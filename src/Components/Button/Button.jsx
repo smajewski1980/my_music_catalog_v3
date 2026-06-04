@@ -1,11 +1,14 @@
 import styles from "./Button.module.css";
-import { Link } from "react-router-dom";
 
-const Button = ({ path, text }) => {
+const Button = ({ text, setFormat, type }) => {
   return (
-    <Link to={path}>
-      <button>{text}</button>
-    </Link>
+    <button
+      onClick={() => {
+        setFormat(type);
+      }}
+    >
+      {text}
+    </button>
   );
 };
 

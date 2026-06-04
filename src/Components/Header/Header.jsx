@@ -1,39 +1,13 @@
+import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import Logo from "../Logo/Logo";
-import Button from "../Button/Button";
+import MainNav from "../MainNav/MainNav";
 
-const Header = () => {
+const Header = ({ format, setFormat }) => {
   return (
     <header className={styles.header}>
-      <Logo />
-      <nav>
-        <ul className={styles.headerNavList}>
-          <li>
-            <Button
-              path='/'
-              text='Search All'
-            />
-          </li>
-          <li>
-            <Button
-              path='/'
-              text='CDS'
-            />
-          </li>
-          <li>
-            <Button
-              path='/'
-              text='TAPES'
-            />
-          </li>
-          <li>
-            <Button
-              path='/'
-              text='RECORDS'
-            />
-          </li>
-        </ul>
-      </nav>
+      <Logo setFormat={setFormat} />
+      {!format && <MainNav setFormat={setFormat} />}
     </header>
   );
 };

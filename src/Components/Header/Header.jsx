@@ -4,24 +4,36 @@ import Button from "../Button/Button";
 
 const Header = () => {
   return (
-    <header>
+    <header className={styles.header}>
       <Logo />
-      <Button
-        path='/'
-        text='Search All'
-      />
-      <Button
-        path='/'
-        text='CDS'
-      />
-      <Button
-        path='/'
-        text='TAPES'
-      />
-      <Button
-        path='/'
-        text='RECORDS'
-      />
+      <nav>
+        <ul className={styles.headerNavList}>
+          <li>
+            <Button
+              path='/'
+              text='Search All'
+            />
+          </li>
+          <li>
+            <Button
+              path='/'
+              text='CDS'
+            />
+          </li>
+          <li>
+            <Button
+              path='/'
+              text='TAPES'
+            />
+          </li>
+          <li>
+            <Button
+              path='/'
+              text='RECORDS'
+            />
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 };

@@ -1,6 +1,6 @@
 import styles from "./MainNav.module.css";
 import Button from "../Button/Button";
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 
 const MainNav = ({ setFormat }) => {
   return (
@@ -9,28 +9,28 @@ const MainNav = ({ setFormat }) => {
         <li>
           <Button
             text='Search All'
-            setFormat={setFormat}
+            func={setFormat}
             type={"all"}
           />
         </li>
         <li>
           <Button
             text='CDS'
-            setFormat={setFormat}
+            func={setFormat}
             type={"cds"}
           />
         </li>
         <li>
           <Button
             text='TAPES'
-            setFormat={setFormat}
+            func={setFormat}
             type={"tapes"}
           />
         </li>
         <li>
           <Button
             text='RECORDS'
-            setFormat={setFormat}
+            func={setFormat}
             type={"records"}
           />
         </li>

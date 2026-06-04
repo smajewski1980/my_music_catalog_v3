@@ -10,12 +10,15 @@ const Root = () => {
 
   useEffect(() => {
     console.log(format);
-  }, [format]);
+    console.log(subFormat);
+  }, [format, subFormat]);
 
   return (
     <Header
       format={format}
       setFormat={setFormat}
+      subFormat={subFormat}
+      setSubFormat={setSubFormat}
     />
   );
 };

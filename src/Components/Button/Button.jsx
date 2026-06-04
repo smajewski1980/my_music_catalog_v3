@@ -1,10 +1,10 @@
 import styles from "./Button.module.css";
 
-const Button = ({ text, setFormat, type }) => {
+const Button = ({ text, func, type }) => {
   return (
     <button
       onClick={() => {
-        setFormat(type);
+        func(type);
       }}
     >
       {text}

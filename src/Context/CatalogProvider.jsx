@@ -16,13 +16,13 @@ function CatalogProvider({ children }) {
   useEffect(() => {
     const loadData = async () => {
       const [
-        records,
-        tapes,
-        cds,
-        cdComps,
-        cdCompsTracks,
-        cdSingles,
-        cdSinglesTracks,
+        recordsData,
+        tapesData,
+        cdsData,
+        cdCompsData,
+        cdCompsTracksData,
+        cdSinglesData,
+        cdSinglesTracksData,
       ] = await Promise.all([
         import("../data/RECORDS.json"),
         import("../data/TAPES.json"),
@@ -33,13 +33,13 @@ function CatalogProvider({ children }) {
         import("../data/CD_SINGLES_TRACKS.json"),
       ]);
       setCatalog({
-        records,
-        tapes,
-        cds,
-        cdComps,
-        cdCompsTracks,
-        cdSingles,
-        cdSinglesTracks,
+        recordsData,
+        tapesData,
+        cdsData,
+        cdCompsData,
+        cdCompsTracksData,
+        cdSinglesData,
+        cdSinglesTracksData,
       });
     };
     loadData();

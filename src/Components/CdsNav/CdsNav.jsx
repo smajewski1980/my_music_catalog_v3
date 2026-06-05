@@ -16,21 +16,21 @@ const CdsNav = ({ setSubFormat }) => {
           <Button
             text='CDS MAIN'
             func={setSubFormat}
-            type={"cds-main"}
+            type={"main"}
           />
         </li>
         <li>
           <Button
             text='COMPILATIONS'
             func={setSubFormat}
-            type={"cd-comps"}
+            type={"compilations"}
           />
         </li>
         <li>
           <Button
             text='SINGLES'
             func={setSubFormat}
-            type={"cd-singles"}
+            type={"singles"}
           />
         </li>
       </ul>

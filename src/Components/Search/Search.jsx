@@ -1,9 +1,17 @@
 import { useState } from "react";
 import styles from "./Search.module.css";
 
-const Search = ({ format, subFormat }) => {
-  const [searchField, setSearchField] = useState("");
-  const [filterField, setFilterField] = useState("artist");
+const Search = ({
+  format,
+  subFormat,
+  setSearchField,
+  setSearchValue,
+  searchField,
+  searchValue,
+  setShowResults,
+}) => {
+  // const [searchField, setSearchField] = useState("");
+  // const [filterField, setFilterField] = useState("artist");
 
   return (
     <>
@@ -12,33 +20,44 @@ const Search = ({ format, subFormat }) => {
           {format} {subFormat && " - "} {subFormat}
         </h1>
         <div className={styles.inputWrapper}>
-          <label htmlFor='filterField'>SEARCH FIELD</label>
+          <label htmlFor='searchField'>SEARCH FIELD</label>
           <select
-            name='filterField'
-            id='filterField'
-            value={filterField}
-            onChange={(e) => {
-              setFilterField(e.target.value);
-            }}
-          >
-            <option value='artist'>ARTIST</option>
-            <option value='title'>TITLE</option>
-            <option value='location'>LOCATION</option>
-          </select>
-        </div>
-        <div className={styles.inputWrapper}>
-          <label htmlFor='searchField'>SEARCH TERM</label>
-          <input
-            type='text'
             name='searchField'
             id='searchField'
             value={searchField}
             onChange={(e) => {
               setSearchField(e.target.value);
             }}
+          >
+            <option value='artist'>ARTIST</option>
+            {format !== "all" && subFormat && (
+              <option value='title'>TITLE</option>
+            )}
+            {format !== "all" && subFormat && (
+              <option value='location'>LOCATION</option>
+            )}
+          </select>
+        </div>
+        <div className={styles.inputWrapper}>
+          <label htmlFor='searchValue'>SEARCH TERM</label>
+          <input
+            type='text'
+            name='searchValue'
+            id='searchValue'
+            value={searchValue}
+            onChange={(e) => {
+              setSearchValue(e.target.value);
+            }}
           />
         </div>
-        <button>SEARCH</button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            setShowResults(true);
+          }}
+        >
+          SEARCH
+        </button>
       </form>
     </>
   );

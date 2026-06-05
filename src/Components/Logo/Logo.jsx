@@ -1,12 +1,21 @@
 import styles from "./Logo.module.css";
 
-const Logo = ({ setFormat, setSubFormat }) => {
+const Logo = ({
+  setFormat,
+  setSubFormat,
+  setSearchField,
+  setSearchValue,
+  setShowResults,
+}) => {
   return (
     <div
       className={styles.logoWrapper}
       onClick={() => {
         setFormat(null);
         setSubFormat(null);
+        setSearchField("");
+        setSearchValue("");
+        setShowResults(false);
       }}
     >
       <img

@@ -22,32 +22,51 @@ const Results = ({ format, subFormat, searchField, searchValue }) => {
   const [cdSinglesTracks, setCdSinglesTracks] = useState(
     cdSinglesTracksData.default,
   );
+  const [filteredSearchResults, setFilteredSearchResults] = useState(null);
 
   useEffect(() => {
-    // if (catalog.tapes && catalog.tapes.default) {
-    //   setCds(catalog.cds.default);
-    // setTapes(catalog.tapes.default);
-    // setRecords(catalog.records.default);
-    // setCdComps(catalog.cdComps.default);
-    // setCdCompsTracks(catalog.cdCompsTracks.default);
-    // setCdSingles(catalog.cdSingles.default);
-    // setCdSinglesTracks(catalog.cdSinglesTracks.default);
-    console.log(cds);
-    console.log(tapes);
-    console.log(records);
-    console.log(cdComps);
-    console.log(cdCompsTracks);
-    console.log(cdSingles);
-    console.log(cdSinglesTracks);
-    setLoading(false);
-    // }
+    // console.log(cds);
+    // console.log(tapes);
+    // console.log(records);
+    // console.log(cdComps);
+    // console.log(cdCompsTracks);
+    // console.log(cdSingles);
+    // console.log(cdSinglesTracks);
+    console.log(subFormat);
+    console.log(format);
+    console.log(searchField);
+
+    setFilteredSearchResults(
+      cds.filter((cd) =>
+        cd[`${searchField}`]
+          .toLowerCase()
+          .startsWith(searchValue.toLowerCase()),
+      ),
+    );
+
+    // setLoading(false);
   }, []);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  useEffect(() => {
+    console.log(filteredSearchResults);
+  }, [filteredSearchResults]);
 
-  return <div>Results</div>;
+  // if (loading) {
+  //   return <p>Loading...</p>;
+  // }
+
+  return (
+    <>
+      <h3>Temp data render</h3>
+      {filteredSearchResults.map((item, idx) => {
+        return (
+          <p key={idx}>
+            {item.artist} - {item.title} - {item.location}
+          </p>
+        );
+      })}
+    </>
+  );
 };
 
 export default Results;

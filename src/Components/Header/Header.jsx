@@ -15,6 +15,7 @@ const Header = ({
   setSearchField,
   setSearchValue,
   setShowResults,
+  setFilteredSearchResults,
 }) => {
   return (
     <header className={styles.header}>
@@ -24,6 +25,7 @@ const Header = ({
         setSearchField={setSearchField}
         setSearchValue={setSearchValue}
         setShowResults={setShowResults}
+        setFilteredSearchResults={setFilteredSearchResults}
       />
       {!format && <MainNav setFormat={setFormat} />}
       {format === "records" && !subFormat && (

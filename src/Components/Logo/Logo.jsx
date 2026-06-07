@@ -6,6 +6,7 @@ const Logo = ({
   setSearchField,
   setSearchValue,
   setShowResults,
+  setFilteredSearchResults,
 }) => {
   return (
     <div
@@ -16,6 +17,7 @@ const Logo = ({
         setSearchField("artist");
         setSearchValue("");
         setShowResults(false);
+        setFilteredSearchResults(null);
       }}
     >
       <img

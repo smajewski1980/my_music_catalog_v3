@@ -7,6 +7,7 @@ const Logo = ({
   setSearchValue,
   setShowResults,
   setFilteredSearchResults,
+  setLoading,
 }) => {
   return (
     <div
@@ -18,6 +19,7 @@ const Logo = ({
         setSearchValue("");
         setShowResults(false);
         setFilteredSearchResults(null);
+        setLoading(true);
       }}
     >
       <img

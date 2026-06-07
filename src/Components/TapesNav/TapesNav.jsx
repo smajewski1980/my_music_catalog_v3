@@ -16,14 +16,14 @@ const TapesNav = ({ setSubFormat }) => {
           <Button
             text='8-TRACKS'
             func={setSubFormat}
-            type={"8-tracks"}
+            type={"8-track"}
           />
         </li>
         <li>
           <Button
             text='CASSETTES'
             func={setSubFormat}
-            type={"cassettes"}
+            type={"cassette"}
           />
         </li>
         <li>

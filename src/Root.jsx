@@ -25,16 +25,57 @@ const Root = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [showResults, setShowResults] = useState(false);
 
+  function filterResults(data, field, value) {
+    const results = data.filter((item) => {
+      return item[`${field}`].toLowerCase().startsWith(value.toLowerCase());
+    });
+    setLoading(false);
+    return results;
+  }
+  // maybe this refactor wont work, we forgot to account for the subFormat
   useEffect(() => {
     if (format === "cds" && subFormat === "main" && cdsData) {
       setFilteredSearchResults(
-        cdsData.filter((cd) =>
-          cd[`${searchField}`]
-            .toLowerCase()
-            .startsWith(searchValue.toLowerCase()),
+        filterResults(cdsData, searchField, searchValue),
+      );
+    }
+    if (format === "tapes" && subFormat === "all" && tapesData) {
+      setFilteredSearchResults(
+        filterResults(tapesData, searchField, searchValue),
+      );
+    }
+    if (format === "tapes" && subFormat === "8-track" && tapesData) {
+      setFilteredSearchResults(
+        filterResults(
+          tapesData.filter((tape) =>
+            tape.location.toLowerCase().startsWith(subFormat),
+          ),
+          searchField,
+          searchValue,
         ),
       );
-      setLoading(false);
+    }
+    if (format === "tapes" && subFormat === "cassette" && tapesData) {
+      setFilteredSearchResults(
+        filterResults(
+          tapesData.filter((tape) =>
+            tape.location.toLowerCase().startsWith(subFormat),
+          ),
+          searchField,
+          searchValue,
+        ),
+      );
+    }
+    if (format === "tapes" && subFormat === "reel to reel" && tapesData) {
+      setFilteredSearchResults(
+        filterResults(
+          tapesData.filter((tape) =>
+            tape.location.toLowerCase().startsWith(subFormat),
+          ),
+          searchField,
+          searchValue,
+        ),
+      );
     }
   }, [showResults]);
 
@@ -49,6 +90,7 @@ const Root = () => {
         setSearchValue={setSearchValue}
         setShowResults={setShowResults}
         setFilteredSearchResults={setFilteredSearchResults}
+        setLoading={setLoading}
       />
       <main className={styles.mainContent}>
         {(format === "all" || (format && subFormat)) && !showResults && (

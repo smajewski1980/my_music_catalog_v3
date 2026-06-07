@@ -13,7 +13,7 @@ const Logo = ({
       onClick={() => {
         setFormat(null);
         setSubFormat(null);
-        setSearchField("");
+        setSearchField("artist");
         setSearchValue("");
         setShowResults(false);
       }}

@@ -1,16 +1,15 @@
-import { createContext, useEffect, useState } from "react";
-
-export const CatalogContext = createContext();
+import { useEffect, useState } from "react";
+import { CatalogContext } from "./CatalogContext";
 
 function CatalogProvider({ children }) {
   const [catalog, setCatalog] = useState({
-    records: [],
-    tapes: [],
-    cds: [],
-    cdComps: [],
-    cdCompsTracks: [],
-    cdSingles: [],
-    cdSinglesTracks: [],
+    recordsData: [],
+    tapesData: [],
+    cdsData: [],
+    cdCompsData: [],
+    cdCompsTracksData: [],
+    cdSinglesData: [],
+    cdSinglesTracksData: [],
   });
 
   useEffect(() => {

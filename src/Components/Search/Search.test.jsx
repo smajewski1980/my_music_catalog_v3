@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import { describe, it, expect, afterEach, vi } from "vitest";
-import { render, screen } from "../test-utils";
+import { fireEvent, render, screen } from "../test-utils";
 import Search from "./Search";
 
 afterEach(() => {
@@ -204,6 +204,41 @@ describe("Search", () => {
     expect(optLoc).toBeInTheDocument();
   });
 
-  it.todo("does nothing when searching all formats and search value is empty");
-  it.todo("set the ShowResults state to true");
+  it("does nothing when searching all formats and search value is empty", () => {
+    vi.stubGlobal("format", "all");
+    vi.stubGlobal("searchValue", "");
+    const setShowResults = vi.fn();
+
+    render(
+      <Search
+        format={format}
+        searchValue={searchValue}
+        setShowResults={setShowResults}
+      />,
+    );
+
+    const button = screen.getByRole("button");
+    fireEvent.click(button);
+
+    expect(setShowResults).not.toHaveBeenCalled();
+  });
+
+  it("sets the ShowResults state to true when the button is clicked", () => {
+    vi.stubGlobal("format", "all");
+    vi.stubGlobal("searchValue", "Unicorn");
+    const setShowResults = vi.fn();
+
+    render(
+      <Search
+        format={format}
+        searchValue={searchValue}
+        setShowResults={setShowResults}
+      />,
+    );
+
+    const button = screen.getByRole("button");
+    fireEvent.click(button);
+
+    expect(setShowResults).toHaveBeenCalled();
+  });
 });

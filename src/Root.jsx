@@ -34,6 +34,15 @@ const Root = () => {
   }
 
   useEffect(() => {
+    if (format === "all" && searchValue) {
+      setFilteredSearchResults(
+        filterResults(
+          [...cdsData, ...tapesData, ...recordsData, ...cdSinglesData],
+          searchField,
+          searchValue,
+        ),
+      );
+    }
     if (format === "cds" && subFormat === "all") {
       setFilteredSearchResults(
         filterResults([...cdsData, ...cdSinglesData], searchField, searchValue),

@@ -54,6 +54,9 @@ const Search = ({
         <button
           onClick={(e) => {
             e.preventDefault();
+
+            if (format === "all" && !searchValue) return;
+
             setShowResults(true);
           }}
         >

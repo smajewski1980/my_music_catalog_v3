@@ -20,7 +20,7 @@ const Root = () => {
   const [filteredSearchResults, setFilteredSearchResults] = useState(null);
   const [format, setFormat] = useState(null);
   const [subFormat, setSubFormat] = useState(null);
-  const [searchField, setSearchField] = useState("artist");
+  const [searchField, setSearchField] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [selectedItem, setSelectedItem] = useState(null);
   const [showResults, setShowResults] = useState(false);
@@ -32,19 +32,34 @@ const Root = () => {
     setLoading(false);
     return results;
   }
-  // maybe this refactor wont work, we forgot to account for the subFormat
+
   useEffect(() => {
-    if (format === "cds" && subFormat === "main" && cdsData) {
+    if (format === "cds" && subFormat === "all") {
+      setFilteredSearchResults(
+        filterResults([...cdsData, ...cdSinglesData], searchField, searchValue),
+      );
+    }
+    if (format === "cds" && subFormat === "main") {
       setFilteredSearchResults(
         filterResults(cdsData, searchField, searchValue),
       );
     }
-    if (format === "tapes" && subFormat === "all" && tapesData) {
+    if (format === "cds" && subFormat === "compilations") {
+      setFilteredSearchResults(
+        filterResults(cdCompsData, searchField, searchValue),
+      );
+    }
+    if (format === "cds" && subFormat === "singles") {
+      setFilteredSearchResults(
+        filterResults(cdSinglesData, searchField, searchValue),
+      );
+    }
+    if (format === "tapes" && subFormat === "all") {
       setFilteredSearchResults(
         filterResults(tapesData, searchField, searchValue),
       );
     }
-    if (format === "tapes" && subFormat === "8-track" && tapesData) {
+    if (format === "tapes" && subFormat === "8-track") {
       setFilteredSearchResults(
         filterResults(
           tapesData.filter((tape) =>
@@ -55,7 +70,7 @@ const Root = () => {
         ),
       );
     }
-    if (format === "tapes" && subFormat === "cassette" && tapesData) {
+    if (format === "tapes" && subFormat === "cassette") {
       setFilteredSearchResults(
         filterResults(
           tapesData.filter((tape) =>
@@ -66,12 +81,44 @@ const Root = () => {
         ),
       );
     }
-    if (format === "tapes" && subFormat === "reel to reel" && tapesData) {
+    if (format === "tapes" && subFormat === "reel to reel") {
       setFilteredSearchResults(
         filterResults(
           tapesData.filter((tape) =>
             tape.location.toLowerCase().startsWith(subFormat),
           ),
+          searchField,
+          searchValue,
+        ),
+      );
+    }
+    if (format === "records" && subFormat === "all") {
+      setFilteredSearchResults(
+        filterResults(recordsData, searchField, searchValue),
+      );
+    }
+    if (format === "records" && subFormat === "33s") {
+      setFilteredSearchResults(
+        filterResults(
+          recordsData.filter((rec) => rec.location.startsWith(subFormat)),
+          searchField,
+          searchValue,
+        ),
+      );
+    }
+    if (format === "records" && subFormat === "45s") {
+      setFilteredSearchResults(
+        filterResults(
+          recordsData.filter((rec) => rec.location.startsWith(subFormat)),
+          searchField,
+          searchValue,
+        ),
+      );
+    }
+    if (format === "records" && subFormat === "78s") {
+      setFilteredSearchResults(
+        filterResults(
+          recordsData.filter((rec) => rec.location.startsWith(subFormat)),
           searchField,
           searchValue,
         ),

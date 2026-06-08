@@ -10,9 +10,6 @@ const Search = ({
   searchValue,
   setShowResults,
 }) => {
-  // const [searchField, setSearchField] = useState("");
-  // const [filterField, setFilterField] = useState("artist");
-
   return (
     <>
       <form className={styles.searchForm}>
@@ -29,13 +26,17 @@ const Search = ({
               setSearchField(e.target.value);
             }}
           >
-            <option value='artist'>ARTIST</option>
+            <option value=''></option>
+            {subFormat !== "compilations" && (
+              <option value='artist'>ARTIST</option>
+            )}
+
             {format !== "all" && subFormat && (
               <option value='title'>TITLE</option>
             )}
-            {format !== "all" && subFormat && (
-              <option value='location'>LOCATION</option>
-            )}
+            {format !== "all" &&
+              subFormat !== "singles" &&
+              subFormat !== "all" && <option value='location'>LOCATION</option>}
           </select>
         </div>
         <div className={styles.inputWrapper}>

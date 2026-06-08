@@ -1,8 +1,209 @@
 import "@testing-library/jest-dom/vitest";
-import { describe, it, expect, afterEach } from "vitest";
+import { describe, it, expect, afterEach, vi } from "vitest";
 import { render, screen } from "../test-utils";
 import Search from "./Search";
 
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
+
 describe("Search", () => {
-  it.todo("test the correct dropdown options render");
+  it("renders the correct text in the h1", () => {
+    vi.stubGlobal("format", "cds");
+    vi.stubGlobal("subFormat", "main");
+
+    render(
+      <Search
+        format={format}
+        subFormat={subFormat}
+      />,
+    );
+
+    const heading = screen.getByText("cds - main");
+
+    expect(heading).toBeInTheDocument();
+  });
+
+  it("renders the correct field options when format is all", () => {
+    vi.stubGlobal("format", "all");
+    vi.stubGlobal("subFormat", "");
+
+    render(
+      <Search
+        format={format}
+        subFormat={subFormat}
+      />,
+    );
+
+    const optArtist = screen.queryByText("ARTIST");
+    const optTitle = screen.queryByText("TITLE");
+    const optLoc = screen.queryByText("LOCATION");
+
+    expect(optArtist).toBeInTheDocument();
+    expect(optTitle).not.toBeInTheDocument();
+    expect(optLoc).not.toBeInTheDocument();
+  });
+
+  it("renders the correct field options when format is cds and subFormat is all", () => {
+    vi.stubGlobal("format", "cds");
+    vi.stubGlobal("subFormat", "all");
+
+    render(
+      <Search
+        format={format}
+        subFormat={subFormat}
+      />,
+    );
+
+    const optArtist = screen.queryByText("ARTIST");
+    const optTitle = screen.queryByText("TITLE");
+    const optLoc = screen.queryByText("LOCATION");
+
+    expect(optArtist).toBeInTheDocument();
+    expect(optTitle).toBeInTheDocument();
+    expect(optLoc).not.toBeInTheDocument();
+  });
+
+  it("renders the correct field options when format is cds and subFormat is main", () => {
+    vi.stubGlobal("format", "cds");
+    vi.stubGlobal("subFormat", "main");
+
+    render(
+      <Search
+        format={format}
+        subFormat={subFormat}
+      />,
+    );
+
+    const optArtist = screen.queryByText("ARTIST");
+    const optTitle = screen.queryByText("TITLE");
+    const optLoc = screen.queryByText("LOCATION");
+
+    expect(optArtist).toBeInTheDocument();
+    expect(optTitle).toBeInTheDocument();
+    expect(optLoc).toBeInTheDocument();
+  });
+
+  it("renders the correct field options when format is cds and subFormat is compilations", () => {
+    vi.stubGlobal("format", "cds");
+    vi.stubGlobal("subFormat", "compilations");
+
+    render(
+      <Search
+        format={format}
+        subFormat={subFormat}
+      />,
+    );
+
+    const optArtist = screen.queryByText("ARTIST");
+    const optTitle = screen.queryByText("TITLE");
+    const optLoc = screen.queryByText("LOCATION");
+
+    expect(optArtist).not.toBeInTheDocument();
+    expect(optTitle).toBeInTheDocument();
+    expect(optLoc).toBeInTheDocument();
+  });
+
+  it("renders the correct field options when format is cds and subFormat is singles", () => {
+    vi.stubGlobal("format", "cds");
+    vi.stubGlobal("subFormat", "singles");
+
+    render(
+      <Search
+        format={format}
+        subFormat={subFormat}
+      />,
+    );
+
+    const optArtist = screen.queryByText("ARTIST");
+    const optTitle = screen.queryByText("TITLE");
+    const optLoc = screen.queryByText("LOCATION");
+
+    expect(optArtist).toBeInTheDocument();
+    expect(optTitle).toBeInTheDocument();
+    expect(optLoc).not.toBeInTheDocument();
+  });
+
+  it("renders the correct field options when format is tapes and subFormat is all", () => {
+    vi.stubGlobal("format", "tapes");
+    vi.stubGlobal("subFormat", "all");
+
+    render(
+      <Search
+        format={format}
+        subFormat={subFormat}
+      />,
+    );
+
+    const optArtist = screen.queryByText("ARTIST");
+    const optTitle = screen.queryByText("TITLE");
+    const optLoc = screen.queryByText("LOCATION");
+
+    expect(optArtist).toBeInTheDocument();
+    expect(optTitle).toBeInTheDocument();
+    expect(optLoc).not.toBeInTheDocument();
+  });
+
+  it("renders the correct field options when format is tapes and subFormat is not all", () => {
+    vi.stubGlobal("format", "tapes");
+    vi.stubGlobal("subFormat", "reel to reel");
+
+    render(
+      <Search
+        format={format}
+        subFormat={subFormat}
+      />,
+    );
+
+    const optArtist = screen.queryByText("ARTIST");
+    const optTitle = screen.queryByText("TITLE");
+    const optLoc = screen.queryByText("LOCATION");
+
+    expect(optArtist).toBeInTheDocument();
+    expect(optTitle).toBeInTheDocument();
+    expect(optLoc).toBeInTheDocument();
+  });
+
+  it("renders the correct field options when format is records and subFormat is all", () => {
+    vi.stubGlobal("format", "records");
+    vi.stubGlobal("subFormat", "all");
+
+    render(
+      <Search
+        format={format}
+        subFormat={subFormat}
+      />,
+    );
+
+    const optArtist = screen.queryByText("ARTIST");
+    const optTitle = screen.queryByText("TITLE");
+    const optLoc = screen.queryByText("LOCATION");
+
+    expect(optArtist).toBeInTheDocument();
+    expect(optTitle).toBeInTheDocument();
+    expect(optLoc).not.toBeInTheDocument();
+  });
+
+  it("renders the correct field options when format is records and subFormat is not all", () => {
+    vi.stubGlobal("format", "records");
+    vi.stubGlobal("subFormat", "45s");
+
+    render(
+      <Search
+        format={format}
+        subFormat={subFormat}
+      />,
+    );
+
+    const optArtist = screen.queryByText("ARTIST");
+    const optTitle = screen.queryByText("TITLE");
+    const optLoc = screen.queryByText("LOCATION");
+
+    expect(optArtist).toBeInTheDocument();
+    expect(optTitle).toBeInTheDocument();
+    expect(optLoc).toBeInTheDocument();
+  });
+
+  it.todo("does nothing when searching all formats and search value is empty");
+  it.todo("set the ShowResults state to true");
 });

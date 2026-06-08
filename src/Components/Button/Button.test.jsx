@@ -5,6 +5,10 @@ import Button from "./Button";
 import React from "react";
 
 describe("Button", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   it("renders a button with the text given through its props", () => {
     const testText = "test text";
     render(<Button text={testText} />);

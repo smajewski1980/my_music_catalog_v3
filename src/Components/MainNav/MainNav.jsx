@@ -8,7 +8,7 @@ const MainNav = ({ setFormat }) => {
       <ul className={styles.headerNavList}>
         <li>
           <Button
-            text='Search All'
+            text='SEARCH ALL'
             func={setFormat}
             type={"all"}
           />

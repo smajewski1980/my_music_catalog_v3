@@ -7,8 +7,8 @@ describe("Logo", () => {
   it("renders the logo image", () => {
     render(<Logo />);
 
-    expect(
-      screen.getByRole("img", { name: /The Majewski Collection/i }),
-    ).toBeInTheDocument();
+    const image = screen.getByRole("img", { name: /The Majewski Collection/i });
+
+    expect(image).toBeInTheDocument();
   });
 });

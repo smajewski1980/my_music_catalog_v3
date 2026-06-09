@@ -8,6 +8,7 @@ const Logo = ({
   setShowResults,
   setFilteredSearchResults,
   setLoading,
+  resetHistory,
 }) => {
   return (
     <div
@@ -20,6 +21,7 @@ const Logo = ({
         setShowResults(false);
         setFilteredSearchResults(null);
         setLoading(true);
+        resetHistory();
       }}
     >
       <img

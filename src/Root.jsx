@@ -24,6 +24,41 @@ const Root = () => {
   const [searchValue, setSearchValue] = useState("");
   const [selectedItem, setSelectedItem] = useState(null);
   const [showResults, setShowResults] = useState(false);
+  const [historyStack, setHistoryStack] = useState([]);
+
+  function addToHistory() {
+    const snapshot = {
+      format,
+      subFormat,
+      searchField,
+      searchValue,
+      showResults,
+    };
+
+    console.log("b4", historyStack.length);
+    setHistoryStack((prev) => [...prev, snapshot]);
+    console.log("after", historyStack.length);
+  }
+
+  function removeFromHistory() {
+    if (!historyStack.length) return null;
+
+    const removedItem = historyStack[historyStack.length - 1];
+
+    setHistoryStack((prev) => prev.slice(0, -1));
+
+    return removedItem;
+  }
+
+  function resetHistory() {
+    console.log(historyStack.length);
+    setHistoryStack([]);
+    console.log(historyStack.length);
+  }
+
+  function reloadHistory(snapshot) {
+    console.log(snapshot);
+  }
 
   function filterResults(data, field, value) {
     const results = data.filter((item) => {
@@ -147,6 +182,8 @@ const Root = () => {
         setShowResults={setShowResults}
         setFilteredSearchResults={setFilteredSearchResults}
         setLoading={setLoading}
+        addToHistory={addToHistory}
+        resetHistory={resetHistory}
       />
       <main className={styles.mainContent}>
         {(format === "all" || (format && subFormat)) && !showResults && (
@@ -158,6 +195,7 @@ const Root = () => {
             searchField={searchField}
             searchValue={searchValue}
             setShowResults={setShowResults}
+            addToHistory={addToHistory}
           />
         )}
         {showResults && (

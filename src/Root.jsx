@@ -1,6 +1,6 @@
 import styles from "./Root.module.css";
 import Header from "./Components/Header/Header";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import Search from "./Components/Search/Search";
 import Results from "./Components/Results/Results";
 import { CatalogContext } from "./Context/CatalogContext";
@@ -25,39 +25,57 @@ const Root = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [showResults, setShowResults] = useState(false);
   const [historyStack, setHistoryStack] = useState([]);
+  // const [reloading, setReloading] = useState(false);
+  const isReloading = useRef(false);
 
-  function addToHistory() {
-    const snapshot = {
-      format,
-      subFormat,
-      searchField,
-      searchValue,
-      showResults,
-    };
+  useEffect(() => {
+    if (isReloading.current) return;
 
-    console.log("b4", historyStack.length);
-    setHistoryStack((prev) => [...prev, snapshot]);
-    console.log("after", historyStack.length);
-  }
-
-  function removeFromHistory() {
-    if (!historyStack.length) return null;
-
-    const removedItem = historyStack[historyStack.length - 1];
-
-    setHistoryStack((prev) => prev.slice(0, -1));
-
-    return removedItem;
-  }
+    if (format) {
+      const snapshot = {
+        format,
+        subFormat,
+        searchField,
+        searchValue,
+        showResults,
+        selectedItem,
+      };
+      setHistoryStack((prev) => [...prev, snapshot]);
+    }
+    return;
+  }, [format, subFormat, searchField, searchValue, showResults, selectedItem]);
 
   function resetHistory() {
-    console.log(historyStack.length);
     setHistoryStack([]);
-    console.log(historyStack.length);
+    setFilteredSearchResults(null);
+    setFormat(null);
   }
 
-  function reloadHistory(snapshot) {
-    console.log(snapshot);
+  function reloadHistory() {
+    // setReloading(true);
+    if (historyStack.length <= 1) return resetHistory();
+
+    isReloading.current = true;
+
+    setHistoryStack((prevStack) => {
+      const newStack = prevStack.slice(0, -1);
+      const reloadVals = newStack[newStack.length - 1];
+
+      setSubFormat(reloadVals.subFormat);
+      setSearchField(reloadVals.searchField);
+      setSearchValue(reloadVals.searchValue);
+      setShowResults(reloadVals.showResults);
+      setSelectedItem(reloadVals.selectedItem);
+
+      return newStack;
+    });
+
+    // setReloading(false);
+    // Turn off the flag inside a timeout macro-task.
+    // This forces React to complete the re-render cycle *before* resetting the flag.
+    setTimeout(() => {
+      isReloading.current = false;
+    }, 0);
   }
 
   function filterResults(data, field, value) {
@@ -182,7 +200,6 @@ const Root = () => {
         setShowResults={setShowResults}
         setFilteredSearchResults={setFilteredSearchResults}
         setLoading={setLoading}
-        addToHistory={addToHistory}
         resetHistory={resetHistory}
       />
       <main className={styles.mainContent}>
@@ -195,7 +212,6 @@ const Root = () => {
             searchField={searchField}
             searchValue={searchValue}
             setShowResults={setShowResults}
-            addToHistory={addToHistory}
           />
         )}
         {showResults && (
@@ -203,6 +219,17 @@ const Root = () => {
             filteredSearchResults={filteredSearchResults}
             loading={loading}
           />
+        )}
+
+        {format && (
+          <>
+            <button
+              onClick={reloadHistory}
+              className={styles.btnBack}
+            >
+              BACK
+            </button>
+          </>
         )}
       </main>
     </>

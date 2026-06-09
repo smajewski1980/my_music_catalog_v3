@@ -3,7 +3,13 @@ import styles from "./Results.module.css";
 const Results = ({ filteredSearchResults, loading }) => {
   return (
     <>
-      {loading ? <div>LOADING . . .</div> : <h3>Results</h3>}
+      {loading ? (
+        <div>LOADING . . .</div>
+      ) : !filteredSearchResults?.length ? (
+        <h3>No Results Found.</h3>
+      ) : (
+        <h3>Results</h3>
+      )}
 
       {filteredSearchResults &&
         filteredSearchResults.map((item, idx) => {

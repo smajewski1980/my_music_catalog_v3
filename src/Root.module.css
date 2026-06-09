@@ -9,4 +9,10 @@
   /* for mobile do the kevin deal where everything stacks,
   the results can just stack up, the item info can stack over that
   then the back button will go back down */
+
+  .btnBack {
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+  }
 }

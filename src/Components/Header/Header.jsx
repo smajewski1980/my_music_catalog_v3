@@ -17,7 +17,7 @@ const Header = ({
   setShowResults,
   setFilteredSearchResults,
   setLoading,
-  addToHistory,
+  resetHistory,
 }) => {
   return (
     <header className={styles.header}>

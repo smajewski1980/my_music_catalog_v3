@@ -25,7 +25,6 @@ const Root = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [showResults, setShowResults] = useState(false);
   const [historyStack, setHistoryStack] = useState([]);
-  // const [reloading, setReloading] = useState(false);
   const isReloading = useRef(false);
 
   useEffect(() => {
@@ -52,7 +51,6 @@ const Root = () => {
   }
 
   function reloadHistory() {
-    // setReloading(true);
     if (historyStack.length <= 1) return resetHistory();
 
     isReloading.current = true;
@@ -70,7 +68,6 @@ const Root = () => {
       return newStack;
     });
 
-    // setReloading(false);
     // Turn off the flag inside a timeout macro-task.
     // This forces React to complete the re-render cycle *before* resetting the flag.
     setTimeout(() => {

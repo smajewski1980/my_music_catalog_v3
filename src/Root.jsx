@@ -38,6 +38,7 @@ const Root = () => {
         searchValue,
         showResults,
         selectedItem,
+        filteredSearchResults,
       };
       setHistoryStack((prev) => [...prev, snapshot]);
     }
@@ -64,6 +65,7 @@ const Root = () => {
       setSearchValue(reloadVals.searchValue);
       setShowResults(reloadVals.showResults);
       setSelectedItem(reloadVals.selectedItem);
+      setFilteredSearchResults(reloadVals.filteredSearchResults);
 
       return newStack;
     });

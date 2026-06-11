@@ -11,8 +11,8 @@
   then the back button will go back down */
 
   .btnBack {
-    position: absolute;
-    bottom: 3rem;
-    left: 3rem;
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
   }
 }

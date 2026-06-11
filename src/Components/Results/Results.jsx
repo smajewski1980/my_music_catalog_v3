@@ -5,7 +5,7 @@ const Results = ({ filteredSearchResults, loading }) => {
     <>
       {loading ? (
         <div>LOADING . . .</div>
-      ) : !filteredSearchResults?.length ? (
+      ) : !filteredSearchResults?.length ? ( // something not right here
         <h3>No Results Found.</h3>
       ) : (
         <h3>Results</h3>

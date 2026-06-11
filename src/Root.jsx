@@ -11,9 +11,9 @@ const Root = () => {
     tapesData,
     cdsData,
     cdCompsData,
-    cdCompsTracksData,
+    // cdCompsTracksData,
     cdSinglesData,
-    cdSinglesTracksData,
+    // cdSinglesTracksData,
   } = useContext(CatalogContext);
 
   const [loading, setLoading] = useState(true);
@@ -22,10 +22,10 @@ const Root = () => {
   const [subFormat, setSubFormat] = useState(null);
   const [searchField, setSearchField] = useState("");
   const [searchValue, setSearchValue] = useState("");
-  const [selectedItem, setSelectedItem] = useState(null);
   const [showResults, setShowResults] = useState(false);
   const [historyStack, setHistoryStack] = useState([]);
   const isReloading = useRef(false);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     if (isReloading.current) return;
@@ -37,13 +37,14 @@ const Root = () => {
         searchField,
         searchValue,
         showResults,
-        selectedItem,
         filteredSearchResults,
+        selectedItem,
       };
       setHistoryStack((prev) => [...prev, snapshot]);
+      console.log("history snapshot recorded");
     }
     return;
-  }, [format, subFormat, searchField, selectedItem]);
+  }, [format, subFormat, filteredSearchResults, searchField, selectedItem]);
 
   function resetHistory() {
     setHistoryStack([]);
@@ -64,8 +65,8 @@ const Root = () => {
       setSearchField(reloadVals.searchField);
       setSearchValue(reloadVals.searchValue);
       setShowResults(reloadVals.showResults);
-      setSelectedItem(reloadVals.selectedItem);
       setFilteredSearchResults(reloadVals.filteredSearchResults);
+      setSelectedItem(reloadVals.selectedItem);
 
       return newStack;
     });
@@ -217,6 +218,10 @@ const Root = () => {
           <Results
             filteredSearchResults={filteredSearchResults}
             loading={loading}
+            format={format}
+            subFormat={subFormat}
+            selectedItem={selectedItem}
+            setSelectedItem={setSelectedItem}
           />
         )}
 

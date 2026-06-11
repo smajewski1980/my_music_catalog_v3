@@ -42,7 +42,7 @@ const Root = () => {
       setHistoryStack((prev) => [...prev, snapshot]);
     }
     return;
-  }, [format, subFormat, searchField, searchValue, showResults, selectedItem]);
+  }, [format, subFormat, searchField, selectedItem]);
 
   function resetHistory() {
     setHistoryStack([]);
@@ -84,7 +84,7 @@ const Root = () => {
   }
 
   useEffect(() => {
-    if (format === "all" && searchValue) {
+    if (format === "all" && searchValue && showResults) {
       setFilteredSearchResults(
         filterResults(
           [...cdsData, ...tapesData, ...recordsData, ...cdSinglesData],
@@ -93,32 +93,32 @@ const Root = () => {
         ),
       );
     }
-    if (format === "cds" && subFormat === "all") {
+    if (format === "cds" && subFormat === "all" && showResults) {
       setFilteredSearchResults(
         filterResults([...cdsData, ...cdSinglesData], searchField, searchValue),
       );
     }
-    if (format === "cds" && subFormat === "main") {
+    if (format === "cds" && subFormat === "main" && showResults) {
       setFilteredSearchResults(
         filterResults(cdsData, searchField, searchValue),
       );
     }
-    if (format === "cds" && subFormat === "compilations") {
+    if (format === "cds" && subFormat === "compilations" && showResults) {
       setFilteredSearchResults(
         filterResults(cdCompsData, searchField, searchValue),
       );
     }
-    if (format === "cds" && subFormat === "singles") {
+    if (format === "cds" && subFormat === "singles" && showResults) {
       setFilteredSearchResults(
         filterResults(cdSinglesData, searchField, searchValue),
       );
     }
-    if (format === "tapes" && subFormat === "all") {
+    if (format === "tapes" && subFormat === "all" && showResults) {
       setFilteredSearchResults(
         filterResults(tapesData, searchField, searchValue),
       );
     }
-    if (format === "tapes" && subFormat === "8-track") {
+    if (format === "tapes" && subFormat === "8-track" && showResults) {
       setFilteredSearchResults(
         filterResults(
           tapesData.filter((tape) =>
@@ -129,7 +129,7 @@ const Root = () => {
         ),
       );
     }
-    if (format === "tapes" && subFormat === "cassette") {
+    if (format === "tapes" && subFormat === "cassette" && showResults) {
       setFilteredSearchResults(
         filterResults(
           tapesData.filter((tape) =>
@@ -140,7 +140,7 @@ const Root = () => {
         ),
       );
     }
-    if (format === "tapes" && subFormat === "reel to reel") {
+    if (format === "tapes" && subFormat === "reel to reel" && showResults) {
       setFilteredSearchResults(
         filterResults(
           tapesData.filter((tape) =>
@@ -151,12 +151,12 @@ const Root = () => {
         ),
       );
     }
-    if (format === "records" && subFormat === "all") {
+    if (format === "records" && subFormat === "all" && showResults) {
       setFilteredSearchResults(
         filterResults(recordsData, searchField, searchValue),
       );
     }
-    if (format === "records" && subFormat === "33s") {
+    if (format === "records" && subFormat === "33s" && showResults) {
       setFilteredSearchResults(
         filterResults(
           recordsData.filter((rec) => rec.location.startsWith(subFormat)),
@@ -165,7 +165,7 @@ const Root = () => {
         ),
       );
     }
-    if (format === "records" && subFormat === "45s") {
+    if (format === "records" && subFormat === "45s" && showResults) {
       setFilteredSearchResults(
         filterResults(
           recordsData.filter((rec) => rec.location.startsWith(subFormat)),
@@ -174,7 +174,7 @@ const Root = () => {
         ),
       );
     }
-    if (format === "records" && subFormat === "78s") {
+    if (format === "records" && subFormat === "78s" && showResults) {
       setFilteredSearchResults(
         filterResults(
           recordsData.filter((rec) => rec.location.startsWith(subFormat)),

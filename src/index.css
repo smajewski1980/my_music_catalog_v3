@@ -69,7 +69,7 @@ ul {
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   max-width: 800px;
-  margin-inline-start: auto;
+  margin-inline-start: 3rem;
 
   button {
     width: 100%;

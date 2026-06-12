@@ -211,6 +211,7 @@ const Root = () => {
         setFilteredSearchResults={setFilteredSearchResults}
         setLoading={setLoading}
         resetHistory={resetHistory}
+        reloadHistory={reloadHistory}
       />
       <main className={styles.mainContent}>
         {(format === "all" || (format && subFormat)) && !showResults && (
@@ -234,17 +235,6 @@ const Root = () => {
             selectedItem={selectedItem}
             setSelectedItem={setSelectedItem}
           />
-        )}
-
-        {format && (
-          <>
-            <button
-              onClick={reloadHistory}
-              className={styles.btnBack}
-            >
-              BACK
-            </button>
-          </>
         )}
       </main>
     </>

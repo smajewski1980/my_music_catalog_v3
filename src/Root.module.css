@@ -1,18 +1,3 @@
 .mainContent {
-  display: grid;
   padding-inline: 5rem;
-  /* grid-template-areas: "stack"; */
-
-  /* > * {
-    grid-area: stack;
-  } */
-  /* for mobile do the kevin deal where everything stacks,
-  the results can just stack up, the item info can stack over that
-  then the back button will go back down */
-
-  .btnBack {
-    position: fixed;
-    bottom: 2rem;
-    left: 2rem;
-  }
 }

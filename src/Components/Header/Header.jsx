@@ -18,6 +18,7 @@ const Header = ({
   setFilteredSearchResults,
   setLoading,
   resetHistory,
+  reloadHistory,
 }) => {
   return (
     <header className={styles.header}>
@@ -31,6 +32,18 @@ const Header = ({
         setLoading={setLoading}
         resetHistory={resetHistory}
       />
+      <div>
+        {format && (
+          <>
+            <button
+              onClick={reloadHistory}
+              className={styles.btnBack}
+            >
+              BACK
+            </button>
+          </>
+        )}
+      </div>
       {!format && <MainNav setFormat={setFormat} />}
       {format === "records" && !subFormat && (
         <RecordsNav setSubFormat={setSubFormat} />

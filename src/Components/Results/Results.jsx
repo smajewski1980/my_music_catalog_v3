@@ -46,7 +46,6 @@ const Results = ({
     }
 
     setSelectedItem(currItem);
-    // still have to get and include the tracks for cd singles and comps
   }
 
   return (
@@ -54,7 +53,11 @@ const Results = ({
       {loading && <div>LOADING . . .</div>}
 
       {filteredSearchResults && (
-        <h3>{filteredSearchResults.length ? "Results" : "No Results"}</h3>
+        <h3>
+          {filteredSearchResults.length
+            ? `${filteredSearchResults.length.toLocaleString()} Results`
+            : "No Results"}
+        </h3>
       )}
 
       {selectedItem &&

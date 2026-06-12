@@ -52,7 +52,7 @@ const Results = ({
     <>
       {loading && <div>LOADING . . .</div>}
 
-      {filteredSearchResults && (
+      {filteredSearchResults && !selectedItem && (
         <h3>
           {filteredSearchResults.length
             ? `${filteredSearchResults.length.toLocaleString()} Results`
@@ -68,7 +68,6 @@ const Results = ({
                 return (
                   <li key={idx}>
                     {tr.artist} - {tr.track_name}
-                    {/* singles tracks still not working */}
                   </li>
                 );
               })}

@@ -20,7 +20,7 @@ const Logo = ({
         setSearchValue("");
         setShowResults(false);
         setFilteredSearchResults(null);
-        setLoading(true);
+        setLoading(false);
         resetHistory();
       }}
     >

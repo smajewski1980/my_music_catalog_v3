@@ -50,6 +50,7 @@ const Root = () => {
     setHistoryStack([]);
     setFilteredSearchResults(null);
     setFormat(null);
+    setSelectedItem(null);
   }
 
   function reloadHistory() {
@@ -60,6 +61,15 @@ const Root = () => {
     setHistoryStack((prevStack) => {
       const newStack = prevStack.slice(0, -1);
       const reloadVals = newStack[newStack.length - 1];
+
+      if (prevStack[prevStack.length - 1].searchValue) {
+        const reloadSearchVal = prevStack[prevStack.length - 1].searchValue;
+        reloadVals.searchValue = reloadSearchVal;
+      }
+
+      if (!reloadVals.searchField) {
+        reloadVals.searchValue = "";
+      }
 
       setSubFormat(reloadVals.subFormat);
       setSearchField(reloadVals.searchField);
@@ -212,6 +222,7 @@ const Root = () => {
             searchField={searchField}
             searchValue={searchValue}
             setShowResults={setShowResults}
+            setLoading={setLoading}
           />
         )}
         {showResults && (

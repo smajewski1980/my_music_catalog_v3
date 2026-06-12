@@ -9,6 +9,7 @@ const Search = ({
   searchField,
   searchValue,
   setShowResults,
+  setLoading,
 }) => {
   return (
     <>
@@ -56,7 +57,7 @@ const Search = ({
             e.preventDefault();
 
             if (format === "all" && !searchValue) return;
-
+            setLoading(true);
             setShowResults(true);
           }}
         >

@@ -223,22 +223,25 @@ describe("Search", () => {
     expect(setShowResults).not.toHaveBeenCalled();
   });
 
-  it("sets the ShowResults state to true when the button is clicked", () => {
+  it("sets the ShowResults and setLoading states to true when the button is clicked", () => {
     vi.stubGlobal("format", "all");
     vi.stubGlobal("searchValue", "Unicorn");
     const setShowResults = vi.fn();
+    const setLoading = vi.fn();
 
     render(
       <Search
         format={format}
         searchValue={searchValue}
         setShowResults={setShowResults}
+        setLoading={setLoading}
       />,
     );
 
-    const button = screen.getByRole("button");
+    const button = screen.getByRole("button", { name: /search/i });
     fireEvent.click(button);
 
-    expect(setShowResults).toHaveBeenCalled();
+    expect(setShowResults).toHaveBeenCalledWith(true);
+    expect(setLoading).toHaveBeenCalledWith(true);
   });
 });

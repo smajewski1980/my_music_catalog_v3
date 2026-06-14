@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import { describe, it, expect, afterEach, vi } from "vitest";
-import { render, screen } from "../test-utils";
+import { render, screen, fireEvent } from "../test-utils";
 import Header from "./Header";
 
 afterEach(() => {

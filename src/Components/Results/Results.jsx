@@ -75,7 +75,8 @@ const Results = ({
             </ol>
           ) : (
             <p key={key}>
-              {key} - {val ? val : "n/a"}
+              {key} -{" "}
+              {val ? (val === "na" || val === 1234 ? "n/a" : val) : "n/a"}
             </p>
           );
         })}

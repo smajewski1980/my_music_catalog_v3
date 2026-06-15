@@ -4,17 +4,11 @@ import { useContext, useState, useEffect, useRef } from "react";
 import Search from "./Components/Search/Search";
 import Results from "./Components/Results/Results";
 import { CatalogContext } from "./Context/CatalogContext";
+import toast, { Toaster } from "react-hot-toast";
 
 const Root = () => {
-  const {
-    recordsData,
-    tapesData,
-    cdsData,
-    cdCompsData,
-    // cdCompsTracksData,
-    cdSinglesData,
-    // cdSinglesTracksData,
-  } = useContext(CatalogContext);
+  const { recordsData, tapesData, cdsData, cdCompsData, cdSinglesData } =
+    useContext(CatalogContext);
 
   const [loading, setLoading] = useState(true);
   const [filteredSearchResults, setFilteredSearchResults] = useState(null);
@@ -100,7 +94,9 @@ const Root = () => {
     if (format === "all" && searchValue && showResults) {
       setFilteredSearchResults(
         filterResults(
-          [...cdsData, ...tapesData, ...recordsData, ...cdSinglesData],
+          [...cdsData, ...tapesData, ...recordsData, ...cdSinglesData].sort(
+            (a, b) => a.artist.localeCompare(b.artist),
+          ),
           searchField,
           searchValue,
         ),
@@ -200,6 +196,11 @@ const Root = () => {
 
   return (
     <>
+      <Toaster
+        position='top-center'
+        reverseOrder={false}
+        duration={4000}
+      />
       <Header
         format={format}
         setFormat={setFormat}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./Search.module.css";
+import { toast } from "react-hot-toast";
 
 const Search = ({
   format,
@@ -56,7 +57,8 @@ const Search = ({
           onClick={(e) => {
             e.preventDefault();
 
-            if (format === "all" && !searchValue) return;
+            if (format === "all" && !searchValue)
+              return toast.error("Please enter a search value.");
             setLoading(true);
             setShowResults(true);
           }}

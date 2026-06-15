@@ -24,13 +24,13 @@ const Results = ({
         (comp) => comp.title_id === parseInt(currId),
       );
 
-      currItem = filteredSearchResults.filter(
+      const baseItem = filteredSearchResults.filter(
         (item) => item.title_id === parseInt(currId),
       )[0];
 
-      currItem.tracks = currTracks;
+      currItem = { ...baseItem, tracks: currTracks };
     } else if (subFormat === "singles") {
-      currItem = filteredSearchResults.filter(
+      const baseItem = filteredSearchResults.filter(
         (item) => item.single_id === parseInt(currId),
       )[0];
 
@@ -38,7 +38,7 @@ const Results = ({
         (sing) => sing.single_id === parseInt(currId),
       );
 
-      currItem.tracks = currTracks;
+      currItem = { ...baseItem, tracks: currTracks };
     } else {
       currItem = filteredSearchResults.filter(
         (item) => item.id === parseInt(currId),
@@ -61,20 +61,21 @@ const Results = ({
       )}
 
       {selectedItem &&
-        Object.entries(selectedItem).map(([key, val], idx) => {
+        Object.entries(selectedItem).map(([key, val]) => {
           return key === "tracks" ? (
-            <ol>
-              {val.map((tr, idx) => {
+            // even though there is only one ol, it throws the unique key error if there is not a key on the ol
+            <ol key={"tracks"}>
+              {val.map((tr) => {
                 return (
-                  <li key={idx}>
+                  <li key={tr.track_id}>
                     {tr.artist} - {tr.track_name}
                   </li>
                 );
               })}
             </ol>
           ) : (
-            <p key={idx}>
-              {key} - {val}
+            <p key={key}>
+              {key} - {val ? val : "n/a"}
             </p>
           );
         })}

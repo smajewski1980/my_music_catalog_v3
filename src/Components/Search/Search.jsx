@@ -57,8 +57,11 @@ const Search = ({
           onClick={(e) => {
             e.preventDefault();
 
+            if (!searchField)
+              return toast.error("Please enter a search field.");
             if (format === "all" && !searchValue)
               return toast.error("Please enter a search value.");
+
             setLoading(true);
             setShowResults(true);
           }}

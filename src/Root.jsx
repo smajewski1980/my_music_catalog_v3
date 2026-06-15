@@ -35,7 +35,6 @@ const Root = () => {
         selectedItem,
       };
       setHistoryStack((prev) => [...prev, snapshot]);
-      console.log("history snapshot recorded");
     }
     return;
   }, [format, subFormat, filteredSearchResults, searchField, selectedItem]);
@@ -95,7 +94,9 @@ const Root = () => {
       setFilteredSearchResults(
         filterResults(
           [...cdsData, ...tapesData, ...recordsData, ...cdSinglesData].sort(
-            (a, b) => a.artist.localeCompare(b.artist),
+            (a, b) =>
+              a.artist.localeCompare(b.artist) ||
+              a.title.localeCompare(b.title),
           ),
           searchField,
           searchValue,

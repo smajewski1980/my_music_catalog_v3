@@ -1,6 +1,7 @@
 import styles from "./Results.module.css";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { CatalogContext } from "../../Context/CatalogContext";
+import { useOnInView } from "react-intersection-observer";
 
 const Results = ({
   filteredSearchResults,
@@ -11,6 +12,22 @@ const Results = ({
   setSelectedItem,
 }) => {
   const { cdCompsTracksData, cdSinglesTracksData } = useContext(CatalogContext);
+  const [resultPage, setResultPage] = useState(1);
+  const RESULT_OFFSET = 200;
+  const [resultStart, setResultStart] = useState(0);
+  const [resultEnd, setResultEnd] = useState(RESULT_OFFSET + 1);
+
+  const inViewRef = useOnInView(
+    (inView, entry) => {
+      if (inView) {
+        // Do something with the element that came into view
+        console.log("Element is in view", entry.target);
+      } else {
+        console.log("Element left view", entry.target);
+      }
+    },
+    { rootMargin: "225px" },
+  );
 
   function handleItemInfo(e) {
     const currId = e.target.dataset.id;
@@ -83,12 +100,13 @@ const Results = ({
 
       {!selectedItem &&
         filteredSearchResults &&
-        filteredSearchResults.map((item, idx) => {
+        filteredSearchResults.slice(resultStart, resultEnd).map((item, idx) => {
           return (
             <p
               key={idx}
               data-id={item.id || item.single_id || item.title_id}
               onClick={handleItemInfo}
+              ref={idx % RESULT_OFFSET ? null : inViewRef}
             >
               {item.artist} - {item.title} - {item.location}
             </p>

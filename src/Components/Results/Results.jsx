@@ -14,19 +14,29 @@ const Results = ({
   const { cdCompsTracksData, cdSinglesTracksData } = useContext(CatalogContext);
   const [resultPage, setResultPage] = useState(1);
   const RESULT_OFFSET = 200;
-  const [resultStart, setResultStart] = useState(0);
-  const [resultEnd, setResultEnd] = useState(RESULT_OFFSET + 1);
+  const [displayedResults, setDisplayedResults] = useState([]);
+
+  useEffect(() => {
+    if (filteredSearchResults) {
+      setDisplayedResults(filteredSearchResults.slice(0, RESULT_OFFSET));
+    }
+  }, [filteredSearchResults]);
 
   const inViewRef = useOnInView(
-    (inView, entry) => {
+    (inView) => {
       if (inView) {
-        // Do something with the element that came into view
-        console.log("Element is in view", entry.target);
-      } else {
-        console.log("Element left view", entry.target);
+        setDisplayedResults((prev) => {
+          const nextStartIndex = prev.length;
+          const nextEndIndex = nextStartIndex + RESULT_OFFSET;
+          const nextChunk = filteredSearchResults.slice(
+            nextStartIndex,
+            nextEndIndex,
+          );
+          return [...prev, ...nextChunk];
+        });
       }
     },
-    { rootMargin: "225px" },
+    { rootMargin: "500px" },
   );
 
   function handleItemInfo(e) {
@@ -99,14 +109,15 @@ const Results = ({
         })}
 
       {!selectedItem &&
-        filteredSearchResults &&
-        filteredSearchResults.slice(resultStart, resultEnd).map((item, idx) => {
+        displayedResults &&
+        displayedResults.map((item, idx) => {
+          const isLastItem = idx === displayedResults.length - 1;
           return (
             <p
               key={idx}
               data-id={item.id || item.single_id || item.title_id}
               onClick={handleItemInfo}
-              ref={idx % RESULT_OFFSET ? null : inViewRef}
+              ref={isLastItem ? inViewRef : null}
             >
               {item.artist} - {item.title} - {item.location}
             </p>

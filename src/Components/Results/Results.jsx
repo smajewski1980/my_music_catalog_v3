@@ -12,7 +12,6 @@ const Results = ({
   setSelectedItem,
 }) => {
   const { cdCompsTracksData, cdSinglesTracksData } = useContext(CatalogContext);
-  const [resultPage, setResultPage] = useState(1);
   const RESULT_OFFSET = 200;
   const [displayedResults, setDisplayedResults] = useState([]);
 
@@ -47,19 +46,19 @@ const Results = ({
     if (subFormat === "main") return;
 
     if (subFormat === "compilations") {
+      const baseItem = filteredSearchResults.find(
+        (item) => item.title_id === parseInt(currId),
+      );
+
       currTracks = cdCompsTracksData.filter(
         (comp) => comp.title_id === parseInt(currId),
       );
 
-      const baseItem = filteredSearchResults.filter(
-        (item) => item.title_id === parseInt(currId),
-      )[0];
-
       currItem = { ...baseItem, tracks: currTracks };
     } else if (subFormat === "singles") {
-      const baseItem = filteredSearchResults.filter(
+      const baseItem = filteredSearchResults.find(
         (item) => item.single_id === parseInt(currId),
-      )[0];
+      );
 
       currTracks = cdSinglesTracksData.filter(
         (sing) => sing.single_id === parseInt(currId),
@@ -67,9 +66,9 @@ const Results = ({
 
       currItem = { ...baseItem, tracks: currTracks };
     } else {
-      currItem = filteredSearchResults.filter(
+      currItem = filteredSearchResults.find(
         (item) => item.id === parseInt(currId),
-      )[0];
+      );
     }
 
     setSelectedItem(currItem);
@@ -111,11 +110,13 @@ const Results = ({
       {!selectedItem &&
         displayedResults &&
         displayedResults.map((item, idx) => {
+          const itemId = item.id || item.single_id || item.title_id;
           const isLastItem = idx === displayedResults.length - 1;
+          const uniqueKey = `${subFormat}-${itemId}-${idx}`;
           return (
             <p
-              key={idx}
-              data-id={item.id || item.single_id || item.title_id}
+              key={uniqueKey}
+              data-id={itemId}
               onClick={handleItemInfo}
               ref={isLastItem ? inViewRef : null}
             >

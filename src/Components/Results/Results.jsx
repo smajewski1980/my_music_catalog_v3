@@ -124,6 +124,16 @@ const Results = ({
             </p>
           );
         })}
+      <a
+        href='#'
+        className={styles.backToTop}
+        title='Back To Top'
+        tabindex='0'
+      >
+        <span className={styles.btnOuterSpan}>
+          <span className={styles.btnInnerSpan}>&#x261D;</span>
+        </span>
+      </a>
     </>
   );
 };

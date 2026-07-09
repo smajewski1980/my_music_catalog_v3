@@ -11,7 +11,7 @@
     &:hover,
     &:focus-visible {
       display: inline-block;
-      rotate: 360deg;
+      rotate: -360deg;
     }
   }
 

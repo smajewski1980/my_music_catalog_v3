@@ -12,6 +12,7 @@ const Results = ({
   setSelectedItem,
 }) => {
   const { cdCompsTracksData, cdSinglesTracksData } = useContext(CatalogContext);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const RESULT_OFFSET = 200;
   const [displayedResults, setDisplayedResults] = useState([]);
 
@@ -20,6 +21,19 @@ const Results = ({
       setDisplayedResults(filteredSearchResults.slice(0, RESULT_OFFSET));
     }
   }, [filteredSearchResults]);
+
+  useEffect(() => {
+    const checkScrollHeight = () => {
+      if (window.scrollY > 750) {
+        setShowBackToTop(true);
+      } else {
+        setShowBackToTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", checkScrollHeight);
+    return () => window.removeEventListener("scroll", checkScrollHeight);
+  }, []);
 
   const inViewRef = useOnInView(
     (inView) => {
@@ -124,9 +138,10 @@ const Results = ({
             </p>
           );
         })}
+
       <a
         href='#'
-        className={styles.backToTop}
+        className={`${styles.backToTop} ${showBackToTop && styles.showBackToTop}`}
         title='Back To Top'
         tabIndex='0'
       >

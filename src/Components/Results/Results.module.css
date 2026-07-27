@@ -1,18 +1,19 @@
 .backToTop {
-  /* opacity: 0; */
-  /* pointer-events: none; */
+  opacity: 0;
+  pointer-events: none;
   transition: opacity 0.3s;
 
   .btnInnerSpan {
     filter: hue-rotate(240deg) saturate(5) brightness(1.2) contrast(1.3);
     transform-origin: 50% 65%;
-    transition: rotate 1s ease;
+  }
 
-    &:hover,
-    &:focus-visible {
-      display: inline-block;
-      rotate: -360deg;
-    }
+  &:hover .btnInnerSpan,
+  &:focus-visible .btnInnerSpan {
+    display: inline-block;
+    animation:
+      rotate 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.175) forwards,
+      squish 0.4s forwards;
   }
 
   .btnOuterSpan {
@@ -24,7 +25,6 @@
     padding: 0.5rem 1rem;
     position: fixed;
     right: 2rem;
-    /* rotate: -90deg; */
     line-height: 1.6;
     transition: background-color 0.3s;
     font-weight: 700;
@@ -43,17 +43,40 @@
         transparent 12%
       );
       z-index: -1;
-      /* rotate: 90deg; */
     }
   }
-
-  /* &:hover span,
-  &:focus-visible span {
-    opacity: 0.7;
-  } */
 
   &:focus-visible span {
     outline: 2px solid white;
     outline-offset: 3px;
+  }
+}
+
+.showBackToTop {
+  opacity: 1;
+  pointer-events: all;
+}
+
+@keyframes squish {
+  0% {
+    scale: 1;
+  }
+  80% {
+    scale: 0.65;
+  }
+  95% {
+    scale: 1.15;
+  }
+  100% {
+    scale: 1;
+  }
+}
+@keyframes rotate {
+  0% {
+    rotate: 0deg;
+  }
+
+  100% {
+    rotate: -360deg;
   }
 }

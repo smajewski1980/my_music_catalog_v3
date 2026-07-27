@@ -90,10 +90,21 @@ ul {
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   max-width: 800px;
-  margin-inline-start: 3rem;
+  /* margin-inline-start: 3rem; */
+  min-width: 600px;
 
   button {
     width: 100%;
-    max-width: 10rem;
+    text-wrap: nowrap;
+  }
+
+  @media screen and (width < 700px) {
+    grid-template-columns: 1fr;
+    min-width: 100vw;
+    padding-inline: 1rem;
+
+    button {
+      padding-block: 2rem;
+    }
   }
 }

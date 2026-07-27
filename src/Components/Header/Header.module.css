@@ -1,6 +1,13 @@
 .header {
-  display: grid;
-  grid-template-columns: 300px 80px 1fr;
+  display: flex;
+  /* grid-template-columns: 300px 80px 1fr; */
   align-items: center;
+  justify-content: space-between;
   padding: 2rem 5rem;
+  flex-wrap: wrap;
+
+  @media screen and (width < 1050px) {
+    justify-content: center;
+    row-gap: 2rem;
+  }
 }

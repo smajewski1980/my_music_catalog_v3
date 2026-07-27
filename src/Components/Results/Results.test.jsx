@@ -19,6 +19,17 @@ describe("Results", () => {
   });
 
   it("when there are results, the heading text is Results", () => {
+    // In your test setup file (e.g., setupTests.js)
+    global.IntersectionObserver = class {
+      constructor(callback) {
+        this.callback = callback;
+      }
+      observe() {
+        // You can add logic here to simulate intersection changes
+      }
+      unobserve() {}
+      disconnect() {}
+    };
     const mockResultObj = [
       {
         id: 1,
@@ -80,20 +91,22 @@ describe("Results", () => {
   });
 
   it("renders the item info when there is a selected item.", () => {
-    const mockResultObj = {
-      id: 1,
-      artist: "Unicorn Princess",
-      title: "Horn In My Side",
-      location: "Stable 1",
-      year: 1985,
-      diameter: "12 inch",
-      sleeve_condition: "***",
-      record_condition: "***",
-      label: "Capitol Records",
-    };
+    const mockResultObj = [
+      {
+        id: 1,
+        artist: "Unicorn Princess",
+        title: "Horn In My Side",
+        location: "Stable 1",
+        year: 1985,
+        diameter: "12 inch",
+        sleeve_condition: "***",
+        record_condition: "***",
+        label: "Capitol Records",
+      },
+    ];
 
     vi.stubGlobal("filteredSearchResults", mockResultObj);
-    vi.stubGlobal("selectedItem", mockResultObj);
+    vi.stubGlobal("selectedItem", mockResultObj[0]);
 
     render(
       <Results

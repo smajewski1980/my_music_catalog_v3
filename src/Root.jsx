@@ -82,6 +82,7 @@ const Root = () => {
   }
 
   function filterResults(data, field, value) {
+    console.log(data);
     const results = data.filter((item) => {
       return item[`${field}`].toLowerCase().startsWith(value.toLowerCase());
     });

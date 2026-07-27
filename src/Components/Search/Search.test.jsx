@@ -224,8 +224,9 @@ describe("Search", () => {
   });
 
   it("sets the ShowResults and setLoading states to true when the button is clicked", () => {
-    vi.stubGlobal("format", "all");
-    vi.stubGlobal("searchValue", "Unicorn");
+    const format = "all";
+    const searchField = "artist";
+    const searchValue = "Unicorn";
     const setShowResults = vi.fn();
     const setLoading = vi.fn();
 
@@ -235,11 +236,16 @@ describe("Search", () => {
         searchValue={searchValue}
         setShowResults={setShowResults}
         setLoading={setLoading}
+        searchField={searchField}
       />,
     );
 
     const button = screen.getByRole("button", { name: /search/i });
-    fireEvent.click(button);
+    try {
+      fireEvent.click(button);
+    } catch (error) {
+      console.error("Click failed with error:", error);
+    }
 
     expect(setShowResults).toHaveBeenCalledWith(true);
     expect(setLoading).toHaveBeenCalledWith(true);

@@ -128,7 +128,7 @@ const Results = ({
         href='#'
         className={styles.backToTop}
         title='Back To Top'
-        tabindex='0'
+        tabIndex='0'
       >
         <span className={styles.btnOuterSpan}>
           <span className={styles.btnInnerSpan}>&#x261D;</span>

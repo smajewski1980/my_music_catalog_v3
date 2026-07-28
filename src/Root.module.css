@@ -1,3 +1,5 @@
-.mainContent {
-  padding-inline: 5rem;
+@media screen and (width > 750) {
+  .mainContent {
+    padding-inline: 5rem;
+  }
 }

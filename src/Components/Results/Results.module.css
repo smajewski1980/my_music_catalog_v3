@@ -80,3 +80,70 @@
     rotate: -360deg;
   }
 }
+
+.resultsWrapper {
+  color: hsl(from var(--accent-purple) h s calc(l + 10));
+  padding-inline: 1rem;
+
+  .moreInfoWrapper {
+    display: grid;
+    gap: 0.5rem;
+    text-align: center;
+    padding-inline: 1rem;
+
+    p:not(span) {
+      color: hsl(from var(--outline-purple) h s calc(l + 40));
+    }
+
+    span {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: hsl(from var(--accent-purple) h s calc(l + 10));
+    }
+
+    ol li {
+      width: fit-content;
+      text-align: center;
+      margin-inline: auto;
+
+      &::marker {
+        color: hsl(from var(--outline-purple) h s calc(l + 40));
+      }
+    }
+  }
+}
+
+.resCount {
+  margin-inline: auto;
+  margin-block-end: 1rem;
+  border-bottom: 3px solid var(--outline-purple);
+  padding-block-end: 0.25rem;
+  padding-inline: 0.5rem;
+  width: fit-content;
+  color: var(--accent-purple);
+}
+
+.resultItem {
+  p {
+    font-size: 1.125rem;
+    text-align: center;
+  }
+
+  p:first-child {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  p:last-child {
+    font-size: 1rem;
+  }
+
+  &:not(:last-of-type) + span {
+    /* + span { */
+    height: 3px;
+    width: 50%;
+    display: block;
+    margin-inline: auto;
+    background-color: var(--outline-purple);
+    margin-block: 1rem 0.5rem;
+  }
+}

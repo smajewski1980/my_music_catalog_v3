@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import Logo from "../Logo/Logo";
 import MainNav from "../MainNav/MainNav";
 import RecordsNav from "../RecordsNav/RecordsNav";
 import TapesNav from "../TapesNav/TapesNav";
 import CdsNav from "../CdsNav/CdsNav";
+import TotalItemQty from "../TotalItemQty/TotalItemQty";
 
 const Header = ({
   format,
@@ -32,6 +32,7 @@ const Header = ({
         setLoading={setLoading}
         resetHistory={resetHistory}
       />
+      {!format && <TotalItemQty />}
       <div>
         {format && (
           <>

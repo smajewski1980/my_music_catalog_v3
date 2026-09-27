@@ -22,7 +22,7 @@ const TotalItemQty = () => {
   return (
     <div className={styles.totalQtyWrapper}>
       <p>
-        Home to over <span>{totalItemQty}</span>&nbsp;items.
+        Home to over <span>{totalItemQty.toLocaleString()}</span>&nbsp;items.
       </p>
     </div>
   );

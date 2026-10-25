@@ -101,8 +101,15 @@ const Results = ({
       )}
 
       {selectedItem && (
-        <div className={styles.moreInfoWrapper}>
+        <div
+          className={
+            format === "records"
+              ? `${styles.moreInfoWrapper} ${styles.recordsInfoBg} ${styles.recordsResults}`
+              : styles.moreInfoWrapper
+          }
+        >
           {Object.entries(selectedItem).map(([key, val]) => {
+            console.log(key);
             return key === "tracks" ? (
               <ol key={"tracks"}>
                 {val.map((tr) => {
@@ -114,9 +121,12 @@ const Results = ({
                 })}
               </ol>
             ) : (
-              <p key={key}>
-                {key} -{" "}
-                <span>
+              <p
+                key={key}
+                className={styles[key]}
+              >
+                <span className={styles.keySpan}>{key} - </span>
+                <span className={styles.valSpan}>
                   {val ? (val === "na" || val === 1234 ? "n/a" : val) : "n/a"}
                 </span>
               </p>

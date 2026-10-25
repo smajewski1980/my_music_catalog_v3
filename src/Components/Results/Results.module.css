@@ -86,16 +86,17 @@
   padding-inline: 1rem;
 
   .moreInfoWrapper {
+    position: absolute;
+    inset: 0;
     display: grid;
-    gap: 0.5rem;
     text-align: center;
-    padding-inline: 1rem;
+    place-content: center;
 
     p:not(span) {
       color: hsl(from var(--outline-purple) h s calc(l + 40));
     }
 
-    span {
+    span:not(.keySpan) {
       font-size: 1.25rem;
       font-weight: 700;
       color: hsl(from var(--accent-purple) h s calc(l + 10));
@@ -111,6 +112,20 @@
       }
     }
   }
+
+  .recordsInfoBg::before {
+    content: "";
+    width: min(95dvw, 500px);
+    aspect-ratio: 1;
+    background-image: url("../../assets/images/record-results-bg.webp");
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
 }
 
 .resCount {
@@ -121,6 +136,28 @@
   padding-inline: 0.5rem;
   width: fit-content;
   color: var(--accent-purple);
+}
+
+.recordsResults p {
+  position: relative;
+}
+
+.recordsResults .year .keySpan {
+  display: none;
+}
+
+.recordsResults .year .valSpan {
+  position: absolute;
+  top: 0;
+  left: -1rem;
+
+  @media (max-width: 500px) {
+    left: -0rem;
+  }
+}
+
+.recordsResults .diameter .keySpan {
+  display: none;
 }
 
 .resultItem {

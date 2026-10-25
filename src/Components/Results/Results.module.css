@@ -100,6 +100,10 @@
       font-size: 1.25rem;
       font-weight: 700;
       color: hsl(from var(--accent-purple) h s calc(l + 10));
+
+      /* @media (max-width: 500px) {
+        font-size: 1rem; or just clamp it
+      } */
     }
 
     ol li {
@@ -111,9 +115,24 @@
         color: hsl(from var(--outline-purple) h s calc(l + 40));
       }
     }
+
+    .recordsInfoInnerWrapper {
+      position: relative;
+      width: min(95dvw, 500px);
+      /* NEXT CLAMP THE FONT */
+
+      img {
+        display: block;
+        width: 100%;
+      }
+
+      p {
+        top: 0;
+      }
+    }
   }
 
-  .recordsInfoBg::before {
+  /* .recordsInfoBg::before {
     content: "";
     width: min(95dvw, 500px);
     aspect-ratio: 1;
@@ -125,7 +144,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: -1;
-  }
+  } */
 }
 
 .resCount {
@@ -139,14 +158,14 @@
 }
 
 .recordsResults p {
-  position: relative;
+  position: absolute;
 }
 
 .recordsResults .year .keySpan {
   display: none;
 }
 
-.recordsResults .year .valSpan {
+/* .recordsResults .year .valSpan {
   position: absolute;
   top: 0;
   left: -1rem;
@@ -154,7 +173,7 @@
   @media (max-width: 500px) {
     left: -0rem;
   }
-}
+} */
 
 .recordsResults .diameter .keySpan {
   display: none;

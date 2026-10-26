@@ -3,14 +3,14 @@
   /* grid-template-columns: 300px 80px 1fr; */
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 5rem;
+  padding: 1rem 3rem;
   flex-wrap: wrap;
   position: relative;
   z-index: 99999;
 
   @media screen and (width < 1050px) {
     justify-content: center;
-    row-gap: 1rem;
+    row-gap: 0.5rem;
   }
 }
 

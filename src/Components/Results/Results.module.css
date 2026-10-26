@@ -22,13 +22,13 @@
     corner-shape: squircle;
     bottom: 1rem;
     outline: 1px solid var(--outline-purple);
-    padding: 0.5rem 1rem;
+    padding: 0.25rem 0.5rem;
     position: fixed;
     right: 2rem;
     line-height: 1.6;
     transition: background-color 0.3s;
     font-weight: 700;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: var(--accent-purple);
 
     &::after {
@@ -260,11 +260,11 @@
   }
 
   p:first-child {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 0.6667rem + 1.4815vw, 1.5rem);
     font-weight: 700;
   }
   p:last-child {
-    font-size: 1rem;
+    font-size: clamp(0.85rem, 0.75rem + 0.4444vw, 1rem);
   }
 
   &:not(:last-of-type) + span {

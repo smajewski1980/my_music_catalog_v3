@@ -40,7 +40,7 @@ const Header = ({
               onClick={reloadHistory}
               className={styles.btnBack}
             >
-              BACK
+              &larr;
             </button>
           </>
         )}

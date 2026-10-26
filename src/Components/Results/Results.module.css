@@ -97,9 +97,9 @@
     }
 
     span:not(.keySpan) {
-      font-size: 1.25rem;
+      font-size: clamp(1rem, 0.9274rem + 0.3226vw, 1.25rem);
       font-weight: 700;
-      color: hsl(from var(--accent-purple) h s calc(l + 10));
+      /* color: hsl(from var(--accent-purple) h s calc(l + 10)); */
 
       /* @media (max-width: 500px) {
         font-size: 1rem; or just clamp it
@@ -127,24 +127,101 @@
       }
 
       p {
-        top: 0;
+        position: absolute;
+      }
+
+      .artist {
+        color: black;
+        top: 25%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70%;
+      }
+
+      .artist .keySpan {
+        display: none;
+      }
+
+      .title {
+        top: 57%;
+        left: 15%;
+        width: 70%;
+        color: var(--vintage-record-gold);
+      }
+
+      .location {
+        bottom: -2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        color: var(--vintage-record-gold);
+      }
+
+      .location::first-line {
+        text-transform: capitalize;
+      }
+
+      .year {
+        bottom: 15.5%;
+        left: 45%;
+        color: var(--vintage-record-gold);
+
+        @media (max-width: 500px) {
+          left: 44%;
+        }
+      }
+
+      .title .keySpan,
+      .year .keySpan,
+      .diameter .keySpan,
+      .sleeve_condition .keySpan,
+      .record_condition .keySpan,
+      .label .keySpan {
+        display: none;
+      }
+
+      .label {
+        bottom: 21%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: var(--vintage-record-gold);
+      }
+
+      .sleeve_condition {
+        top: 50.5%;
+        left: 15%;
+        color: var(--vintage-record-gold);
+
+        &::before {
+          content: "Sl. Cond. ";
+        }
+      }
+      .record_condition {
+        top: 50.5%;
+        right: 18%;
+        color: var(--vintage-record-gold);
+
+        &::before {
+          content: "Rec. Cond. ";
+        }
+      }
+
+      .id,
+      .diameter {
+        top: -4rem;
+        left: 50%;
+        color: var(--vintage-record-gold);
+        transform: translateX(-50%);
+      }
+
+      .id .keySpan {
+        text-transform: uppercase;
+      }
+
+      .diameter {
+        top: -2.25rem;
       }
     }
   }
-
-  /* .recordsInfoBg::before {
-    content: "";
-    width: min(95dvw, 500px);
-    aspect-ratio: 1;
-    background-image: url("../../assets/images/record-results-bg.webp");
-    background-size: contain;
-    background-repeat: no-repeat;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-  } */
 }
 
 .resCount {
@@ -155,28 +232,6 @@
   padding-inline: 0.5rem;
   width: fit-content;
   color: var(--accent-purple);
-}
-
-.recordsResults p {
-  position: absolute;
-}
-
-.recordsResults .year .keySpan {
-  display: none;
-}
-
-/* .recordsResults .year .valSpan {
-  position: absolute;
-  top: 0;
-  left: -1rem;
-
-  @media (max-width: 500px) {
-    left: -0rem;
-  }
-} */
-
-.recordsResults .diameter .keySpan {
-  display: none;
 }
 
 .resultItem {

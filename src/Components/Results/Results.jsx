@@ -106,7 +106,7 @@ const Results = ({
             className={
               format === "records"
                 ? `${styles.recordsInfoInnerWrapper} ${styles.recordsInfoBg} ${styles.recordsResults}`
-                : styles.recordsInfoInnerWrapper
+                : ""
             }
           >
             {format === "records" && (

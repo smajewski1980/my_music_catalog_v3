@@ -99,11 +99,6 @@
     span:not(.keySpan) {
       font-size: clamp(1rem, 0.9274rem + 0.3226vw, 1.25rem);
       font-weight: 700;
-      /* color: hsl(from var(--accent-purple) h s calc(l + 10)); */
-
-      /* @media (max-width: 500px) {
-        font-size: 1rem; or just clamp it
-      } */
     }
 
     ol li {
@@ -119,7 +114,6 @@
     .recordsInfoInnerWrapper {
       position: relative;
       width: min(95dvw, 500px);
-      /* NEXT CLAMP THE FONT */
 
       img {
         display: block;
@@ -132,10 +126,19 @@
 
       .artist {
         color: black;
-        top: 25%;
+        top: 24%;
         left: 50%;
         transform: translateX(-50%);
+        line-height: 1.1;
         width: 70%;
+        height: 3lh;
+        display: grid;
+        place-content: safe center;
+
+        @media (max-width: 500px) {
+          height: 2.25lh;
+          overflow: scroll;
+        }
       }
 
       .artist .keySpan {
@@ -143,10 +146,20 @@
       }
 
       .title {
+        line-height: 1.2;
         top: 57%;
         left: 15%;
         width: 70%;
+        height: 4.25lh;
         color: var(--vintage-record-gold);
+        display: grid;
+        place-content: safe center;
+        overflow-y: auto;
+
+        @media (max-width: 500px) {
+          top: 56%;
+          height: 3lh;
+        }
       }
 
       .location {
@@ -154,6 +167,7 @@
         left: 50%;
         transform: translateX(-50%);
         color: var(--vintage-record-gold);
+        width: 100%;
       }
 
       .location::first-line {
@@ -188,29 +202,33 @@
 
       .sleeve_condition {
         top: 50.5%;
-        left: 15%;
+        left: 12%;
+        letter-spacing: -1px;
         color: var(--vintage-record-gold);
 
         &::before {
-          content: "Sl. Cond. ";
+          content: "Sleeve Cond. ";
         }
       }
       .record_condition {
         top: 50.5%;
-        right: 18%;
+        right: 13%;
         color: var(--vintage-record-gold);
+        letter-spacing: -1px;
 
         &::before {
-          content: "Rec. Cond. ";
+          content: "Record Cond. ";
         }
       }
 
       .id,
       .diameter {
-        top: -4rem;
-        left: 50%;
         color: var(--vintage-record-gold);
-        transform: translateX(-50%);
+      }
+
+      .id {
+        bottom: -0.5rem;
+        left: 1rem;
       }
 
       .id .keySpan {
@@ -218,7 +236,8 @@
       }
 
       .diameter {
-        top: -2.25rem;
+        bottom: -0.5rem;
+        right: 1rem;
       }
     }
   }

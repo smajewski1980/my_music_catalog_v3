@@ -102,26 +102,44 @@ const Results = ({
 
       {selectedItem && (
         <div className={styles.moreInfoWrapper}>
-          {Object.entries(selectedItem).map(([key, val]) => {
-            return key === "tracks" ? (
-              <ol key={"tracks"}>
-                {val.map((tr) => {
-                  return (
-                    <li key={tr.track_id}>
-                      {tr.artist} - {tr.track_name}
-                    </li>
-                  );
-                })}
-              </ol>
-            ) : (
-              <p key={key}>
-                {key} -{" "}
-                <span>
-                  {val ? (val === "na" || val === 1234 ? "n/a" : val) : "n/a"}
-                </span>
-              </p>
-            );
-          })}
+          <div
+            className={
+              format === "records"
+                ? `${styles.recordsInfoInnerWrapper} ${styles.recordsInfoBg} ${styles.recordsResults}`
+                : ""
+            }
+          >
+            {format === "records" && (
+              <img
+                src='/record-results-bg.webp'
+                alt='a background decoration image'
+              />
+            )}
+            {Object.entries(selectedItem).map(([key, val]) => {
+              console.log(key);
+              return key === "tracks" ? (
+                <ol key={"tracks"}>
+                  {val.map((tr) => {
+                    return (
+                      <li key={tr.track_id}>
+                        {tr.artist} - {tr.track_name}
+                      </li>
+                    );
+                  })}
+                </ol>
+              ) : (
+                <p
+                  key={key}
+                  className={styles[key]}
+                >
+                  <span className={styles.keySpan}>{key} - </span>
+                  <span className={styles.valSpan}>
+                    {val ? (val === "na" || val === 1234 ? "n/a" : val) : "n/a"}
+                  </span>
+                </p>
+              );
+            })}
+          </div>
         </div>
       )}
 

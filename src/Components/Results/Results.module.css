@@ -86,19 +86,19 @@
   padding-inline: 1rem;
 
   .moreInfoWrapper {
+    position: absolute;
+    inset: 0;
     display: grid;
-    gap: 0.5rem;
     text-align: center;
-    padding-inline: 1rem;
+    place-content: center;
 
     p:not(span) {
       color: hsl(from var(--outline-purple) h s calc(l + 40));
     }
 
-    span {
-      font-size: 1.25rem;
+    span:not(.keySpan) {
+      font-size: clamp(1rem, 0.9274rem + 0.3226vw, 1.25rem);
       font-weight: 700;
-      color: hsl(from var(--accent-purple) h s calc(l + 10));
     }
 
     ol li {
@@ -108,6 +108,136 @@
 
       &::marker {
         color: hsl(from var(--outline-purple) h s calc(l + 40));
+      }
+    }
+
+    .recordsInfoInnerWrapper {
+      position: relative;
+      width: min(95dvw, 500px);
+
+      img {
+        display: block;
+        width: 100%;
+      }
+
+      p {
+        position: absolute;
+      }
+
+      .artist {
+        color: black;
+        top: 24%;
+        left: 50%;
+        transform: translateX(-50%);
+        line-height: 1.1;
+        width: 70%;
+        height: 3lh;
+        display: grid;
+        place-content: safe center;
+
+        @media (max-width: 500px) {
+          height: 2.25lh;
+          overflow: scroll;
+        }
+      }
+
+      .artist .keySpan {
+        display: none;
+      }
+
+      .title {
+        line-height: 1.2;
+        top: 57%;
+        left: 15%;
+        width: 70%;
+        height: 4.25lh;
+        color: var(--vintage-record-gold);
+        display: grid;
+        place-content: safe center;
+        overflow-y: auto;
+
+        @media (max-width: 500px) {
+          top: 56%;
+          height: 3lh;
+        }
+      }
+
+      .location {
+        bottom: -2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        color: var(--vintage-record-gold);
+        width: 100%;
+      }
+
+      .location::first-line {
+        text-transform: capitalize;
+      }
+
+      .year {
+        bottom: 15.5%;
+        left: 45%;
+        color: var(--vintage-record-gold);
+
+        @media (max-width: 500px) {
+          left: 44%;
+        }
+      }
+
+      .title .keySpan,
+      .year .keySpan,
+      .diameter .keySpan,
+      .sleeve_condition .keySpan,
+      .record_condition .keySpan,
+      .label .keySpan {
+        display: none;
+      }
+
+      .label {
+        bottom: 21%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: var(--vintage-record-gold);
+      }
+
+      .sleeve_condition {
+        top: 50.5%;
+        left: 12%;
+        letter-spacing: -1px;
+        color: var(--vintage-record-gold);
+
+        &::before {
+          content: "Sleeve Cond. ";
+        }
+      }
+      .record_condition {
+        top: 50.5%;
+        right: 13%;
+        color: var(--vintage-record-gold);
+        letter-spacing: -1px;
+
+        &::before {
+          content: "Record Cond. ";
+        }
+      }
+
+      .id,
+      .diameter {
+        color: var(--vintage-record-gold);
+      }
+
+      .id {
+        bottom: -0.5rem;
+        left: 1rem;
+      }
+
+      .id .keySpan {
+        text-transform: uppercase;
+      }
+
+      .diameter {
+        bottom: -0.5rem;
+        right: 1rem;
       }
     }
   }
